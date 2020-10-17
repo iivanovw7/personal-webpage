@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="#ffffff" name="theme-color">
+  <meta content="#ffffff" name="msapplication-TileColor">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="Personal contacts page" name="description"/>
+  <link href="asset-manifest.json" rel="manifest">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <meta content="style-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com;"
+        http-equiv="Content-Security-Policy">
+  <meta content="font-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.gstatic.com;"
+        http-equiv="Content-Security-Policy">
+  <meta content="script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com https://fonts.googleapis.com;"
+        http-equiv="Content-Security-Policy">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<noscript>
+  If you're seeing this message, that means
+  <strong>JavaScript has been disabled on your browser</strong>, please
+  <strong>enable JS</strong> to make this app work.
+</noscript>
+<div id="app"></div>
+<div class="contacts-container">
+  <p>
+    <span class="operator">export </span>
+    <span class="operator">default </span>
+    <span class="default">{ </span>
+  </p>
+  <div class="contacts-typing-container"></div>
+  <p>
+    <span class="default">};</span>
+  </p>
+</div>
+<noscript>
+  You need to enable JavaScript to run this app.
+</noscript>
+</body>
+</html>

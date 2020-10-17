@@ -1,0 +1,20 @@
+/* Main typography setup */
+@font-face {
+  font-family: $baseFontFamily;
+  font-weight: $regular;
+  src: local($baseFontLocal), url($baseFontLocalTtf) format('truetype');
+  src: local($baseFontLocal), url($baseFontLocalOtf) format('opentype');
+  src: url(../$baseGoogleFont);
+}
+
+/* Applying main application font */
+html {
+  font-family: $baseFontFamily;
+  font-weight: $regular;
+}
+
+body {
+  @mixin fonts;
+}
+
+

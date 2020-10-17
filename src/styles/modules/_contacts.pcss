@@ -1,0 +1,55 @@
+.contacts-container {
+  position: absolute;
+  bottom: 5vh;
+  right: 5vh;
+  width: units(280);
+  padding: units(10);
+  background: opacify($primaryColor, 0.85);
+  font-size: 1.7em;
+  animation: show-up 2s;
+  display: inline;
+
+  @mixin media xs, md {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: inline-table;
+  }
+}
+
+.contacts-typing-text {
+  white-space: nowrap;
+  overflow: hidden;
+  animation: print 2s steps(40, end);
+}
+
+.contacts-container p {
+  width: units(260);
+  margin-top: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: text;
+}
+
+.operator {
+  color: $operatorColor;
+}
+
+.default, .cursor {
+  color: $defaultTextColor;
+}
+
+.cursor {
+  animation: cursor-blink 1s infinite;
+}
+
+.string {
+  color: $linkColor;
+}
+
+.nested {
+  margin-left: units(10);
+}
+
+

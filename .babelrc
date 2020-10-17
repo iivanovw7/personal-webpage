@@ -1,0 +1,22 @@
+{
+  "env": {
+    "modern": {
+      "presets": [
+        "@babel/preset-modules"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    },
+    "legacy": {
+      "presets": [
+        "@babel/preset-env"
+      ]
+    }
+  },
+  "presets": ["@babel/preset-env"]
+}
+
