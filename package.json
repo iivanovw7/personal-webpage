@@ -118,5 +118,11 @@
     "webpack-manifest-plugin": "2.2.0",
     "webpack-merge": "4.2.2",
     "webpack-stats-plugin": "0.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit",
+      "pre-push": "npm run pre-push"
+    }
   }
 }
