@@ -85,6 +85,9 @@ Generate jsDocs in ```./dist/doc``` folder:
 ```
 npm run doc
 ```
+Before executing empty ```.env``` file should be created in root folder.
+Needed for future use.
+
 Run dev server:
 ```
 npm run dev
