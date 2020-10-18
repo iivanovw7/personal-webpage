@@ -106,6 +106,10 @@ const thingiesConfig = {
       thingiesItem17: {
         url: 'thingies_item_17.png',
         name: 'thingiesItem17'
+      },
+      thingiesItem18: {
+        url: 'thingies_item_18.png',
+        name: 'thingiesItem18'
       }
     }
   }

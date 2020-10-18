@@ -51,7 +51,7 @@ Thingies.prototype.addThingies = function addThingies() {
   const container = new Container();
   this.addChild(container);
 
-  for (let index = 1; index <= 17; index++) {
+  for (let index = 1; index <= 18; index++) {
     images.push(`thingiesItem${index}`);
   }
 
