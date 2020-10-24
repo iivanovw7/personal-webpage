@@ -5,6 +5,8 @@
  */
 import { AnimatedSprite, Application, Sprite, TilingSprite, Graphics, TextStyle, Text, utils, Texture } from 'pixi.js';
 
+import { getViewportSize } from '../utils';
+
 import { resize, tick } from './actions';
 
 // Skips hello message
@@ -49,7 +51,10 @@ App.prototype = {
     const { core } = store.getState();
     const { adaptiveSize, customClass } = core;
 
-    parentNode.classList.add(customClass);
+    if (customClass) {
+      parentNode.classList.add(customClass);
+    }
+
     parentNode.classList.add(adaptiveSize ? 'responsive' : 'static');
     parentNode.appendChild(this.app.view);
   },
@@ -63,12 +68,13 @@ App.prototype = {
   resizeHandler: function resizeHandler() {
     const { store } = this.props;
     const { core } = store.getState();
-    const { adaptiveSize, sceneSize } = core;
+    const { adaptiveSize } = core;
 
     store.dispatch(resize(adaptiveSize));
 
     if (adaptiveSize) {
-      const { width, height } = sceneSize;
+      const { width, height } = getViewportSize();
+
       this.app.renderer.resize(width, height);
     }
   },

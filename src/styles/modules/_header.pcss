@@ -1,0 +1,11 @@
+.header {
+  align-self: flex-start;
+  background: opacify($primaryColor, 0.85);
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  @mixin media xs, md {
+    height: units(36);
+  }
+}

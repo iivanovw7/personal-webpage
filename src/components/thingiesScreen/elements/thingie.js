@@ -12,6 +12,10 @@ import { Point, Sprite } from 'pixi.js';
  * @constructor
  */
 export default class Thingie extends Sprite {
+  /**
+   * Thingie class constructor.
+   * @param {PIXI.Texture} texture to be used as thingie.
+   */
   constructor(texture) {
     super(texture);
 

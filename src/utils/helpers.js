@@ -5,6 +5,7 @@
  */
 
 import commonConfig from '../config/common';
+import * as constants from '../constants';
 
 /**
  * Requires all files in a directory.
@@ -79,6 +80,17 @@ export const combineDefaultConfig = (nodeId, config) => {
 };
 
 /**
+ * Returns viewport size.
+ * @return {{width: number, height: number}} viewport width and height.
+ */
+export function getViewportSize() {
+  return {
+    width: Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
+    height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+  };
+}
+
+/**
  * Returns current browser window parameters, used to resize canvas if adaptive mode selected.
  * @return {Object} - object contains screen size, resolution and screen center coordinates.
  * @type {function}
@@ -87,15 +99,19 @@ export const combineDefaultConfig = (nodeId, config) => {
  * @property {number} resolution
  * @property {Object} sceneCenter
  */
-export const windowSize = () => ({
-  width: window.innerWidth,
-  height: window.innerHeight,
-  resolution: window.devicePixelRatio,
-  sceneCenter: {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2
-  }
-});
+export const windowSize = () => {
+  const size = getViewportSize();
+
+  return {
+    width: size.width,
+    height: size.height,
+    resolution: window.devicePixelRatio,
+    sceneCenter: {
+      x: size.width / 2,
+      y: size.height / 2
+    }
+  };
+};
 
 export const setupInitialState = (adaptiveSize, config) => ({
   core: {
@@ -107,6 +123,28 @@ export const setupInitialState = (adaptiveSize, config) => ({
       : windowSize()
   }
 });
+
+/**
+ * Passes new device type in callback function,
+ *  in case any number and callback has been received in params.
+ * @param {number} screenWidth
+ *  device screen width
+ * @return {function}
+ *  returns callback function with new device type
+ */
+export function getDeviceType(screenWidth = 0) {
+  if (screenWidth) {
+    if (screenWidth < 1024 && screenWidth > 768) {
+      return constants.deviceMap.tablet;
+    }
+
+    if (screenWidth > 1024) {
+      return constants.deviceMap.desktop;
+    }
+  }
+
+  return constants.deviceMap.mobile;
+}
 
 /**
  * Debounce function

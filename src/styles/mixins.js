@@ -46,7 +46,7 @@ const shadows = (mixin, type = 'xs') => {
 /**
  * Returns media query with provided min&max breakpoint values
  * breakpoints are taken from settings, in case invalid key is provided -
- * returns mixin with default breakpoint
+ * returns mixin with `default` breakpoint
  *
  * @param {Object} mixin - parent node
  * @param {string} min - min-width breakpoint key

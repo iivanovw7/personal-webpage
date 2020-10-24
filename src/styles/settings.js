@@ -6,7 +6,7 @@ const defaults = {
   // Base font size in px
   fontSizePxBase: 14,
 
-  bgColor: 'rgb(39,42,50)',
+  bgColor: 'rgb(50,50,50)',
   defaultTextColor: 'azure',
   primaryColor: 'rgba(5, 16, 41, 1)',
   linkColor: '#d09175',
@@ -31,7 +31,7 @@ const defaults = {
     baseSize: 10,
 
     // Value added to a current base font size
-    addSize: '.3vw'
+    addSize: '.2vw'
   },
 
   // Screen breakpoints in px

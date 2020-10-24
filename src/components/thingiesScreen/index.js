@@ -6,12 +6,12 @@
 import { DropShadowFilter } from '@pixi/filter-drop-shadow';
 import { Container, Point } from 'pixi.js';
 
-import { RESIZE, MOUSE_MOVE } from '../../constants';
+import { RESIZE, MOUSE_MOVE, TOUCH_MOVE } from '../../constants';
 import App from '../../core/index';
 import ErrorMessage from '../errorMessage';
 
 import Thingie from './elements/thingie';
-import { isNear } from './utils';
+import { isNear, isDesktop, getPosition } from './utils';
 
 /**
  * Animation scene class, contains Thingies logic.
@@ -23,20 +23,14 @@ import { isNear } from './utils';
 const Thingies = function Thingies(props) {
   App.apply(this, [props]);
   this.props = props;
-  this.state = this.props.store.getState();
   this.viewportHeight = this.app.screen.height;
   this.viewportWidth = this.app.screen.width;
   this.mousepos = new Point(500, 500);
-  this.props.store.subscribe(() => {
-    this.state = this.props.store.getState();
-  });
 };
 
 Thingies.prototype = Object.create(App.prototype);
 
 Thingies.prototype.setBackground = function setBackground() {
-  this.cleanRenderer();
-
   const background = this.createSpite(this.app.loader.resources.thingiesBackground.texture);
 
   background.position.x = -((background.width - this.viewportWidth) / 2);
@@ -49,13 +43,14 @@ Thingies.prototype.addThingies = function addThingies() {
   const thingies = [];
   const images = [];
   const container = new Container();
+
   this.addChild(container);
 
   for (let index = 1; index <= 18; index++) {
     images.push(`thingiesItem${index}`);
   }
 
-  for (let index = 0; index < 100; index++) {
+  for (let index = 0; index < 150; index++) {
     // prettier-ignore
     const texture = this.textureFrom(
       images[Math.floor(Math.random() * images.length)]
@@ -106,19 +101,29 @@ Thingies.prototype.init = function init() {
       ErrorMessage.displayError(this.props.parentNode);
     },
     callback: () => {
-      this.setBackground();
+      this.cleanRenderer();
+      this.resizeHandler();
+      //this.setBackground();
       this.addThingies();
-    }
-  });
 
-  window.addEventListener(RESIZE, () => {
-    this.resizeHandler();
-  });
+      if (typeof window !== 'undefined') {
+        // prettier-ignore
+        const listener = isDesktop()
+          ? MOUSE_MOVE
+          : TOUCH_MOVE;
 
-  window.addEventListener(MOUSE_MOVE, (e) => {
-    const { x, y } = e;
-    if (this.mousepos.x !== x && this.mousepos.y !== y) {
-      this.mousepos.set(x, y);
+        window.addEventListener(RESIZE, () => {
+          this.resizeHandler();
+        });
+
+        window.addEventListener(listener, (e) => {
+          const { x, y } = getPosition(e);
+
+          if (this.mousepos.x !== x && this.mousepos.y !== y) {
+            this.mousepos.set(x, y);
+          }
+        });
+      }
     }
   });
 };
